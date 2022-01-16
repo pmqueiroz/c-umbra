@@ -1,5 +1,8 @@
 package umbra_test
 
+var hello
+const hello
+
 +def main() {
    out("Hello, World!")
 }

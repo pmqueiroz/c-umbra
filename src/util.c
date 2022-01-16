@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "../include/util.h"
 
 char* read_file(const char* path) {

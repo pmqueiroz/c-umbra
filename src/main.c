@@ -3,6 +3,8 @@
 #include <string.h>
 
 #include "../include/util.h"
+#include "../include/interpreter.h"
+#include "../include/token.h"
 
 int main(int argc, char** argv) {
    if (strcmp(argv[1], "--help") == 0) {
@@ -10,9 +12,16 @@ int main(int argc, char** argv) {
       return 0;
    }
 
-   char* source = read_file(argv[1]);
-   printf("%s\n", source);
-   free(source);
+   char* code = read_file(argv[1]);
+   TokenList tokens = {0};
+   interpreter_run(code, &tokens);
+
+   for (int i = 0; i < tokens.ptr; i++) {
+      Token* token = token_list_get(&tokens, i);
+      printf("%d, %d, %d\n", token->type, token->value, token->line);
+   }
+   
+   free(code);
 
    return 0;
 }
