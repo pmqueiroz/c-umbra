@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "../include/util.h"
 
-char* read_ascii_file(const char* path) {
+char* read_file(const char* path) {
    FILE* file = fopen(path, "r");
    if (!file) {
       printf("Could not open file\n");

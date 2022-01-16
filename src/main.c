@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
       return 0;
    }
 
-   char* source = read_ascii_file(argv[1]);
+   char* source = read_file(argv[1]);
    printf("%s\n", source);
    free(source);
 
