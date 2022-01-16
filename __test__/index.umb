@@ -1,5 +1,5 @@
-package Umbra_test
+package umbra_test
 
-+def main () {
++def main() {
    out("Hello, World!")
 }

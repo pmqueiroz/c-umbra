@@ -9,17 +9,17 @@ EXECUTABLE = umbra
 all: ${SRC_FILES} ${OBJ_FILES} ${EXECUTABLE}
 
 ${EXECUTABLE}: ${OBJ_FILES}
-	${CC} ${LDFLAGS} $^ -o $@
+	@${CC} ${LDFLAGS} $^ -o $@
 	
 %.o: %.c ${HEADER_FILES}
-	${CC} ${CFLAGS} $< -o $@
+	@${CC} ${CFLAGS} $< -o $@
 
 clean:
-	rm ${OBJ_FILES} ${EXECUTABLE}
+	@rm ${OBJ_FILES} ${EXECUTABLE}
 
 run:
-	./${EXECUTABLE}
+	@./${EXECUTABLE}
 
 test:
-	./${EXECUTABLE} __test__/index.umb
+	@./${EXECUTABLE} __test__/index.umb
 
