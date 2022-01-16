@@ -8,11 +8,11 @@ EXECUTABLE = umbra
 
 all: ${SRC_FILES} ${OBJ_FILES} ${EXECUTABLE}
 
-${EXECUTABLE}: ${OBJ_FILES}
-	@${CC} ${LDFLAGS} $^ -o $@
+# ${EXECUTABLE}: ${OBJ_FILES}
+# 	@${CC} ${LDFLAGS} $^ -o $@
 	
-%.o: %.c ${HEADER_FILES}
-	@${CC} ${CFLAGS} $< -o $@
+# %.o: %.c ${HEADER_FILES}
+# 	@${CC} ${CFLAGS} $< -o $@
 
 clean:
 	@rm ${OBJ_FILES} ${EXECUTABLE}

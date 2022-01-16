@@ -1,8 +1,10 @@
+# this is a sample code just for testing
+
 package umbra_test
 
-var hello
-const hello
+const string world -> "World"
+const number num -> 23
 
 def main() {
-   out("Hello, World!")
+   out("Hello, $world!")
 }
