@@ -20,3 +20,6 @@ clean:
 run:
 	./${EXECUTABLE}
 
+test:
+	./${EXECUTABLE} __test__/index.umb
+
