@@ -3,6 +3,6 @@ package umbra_test
 var hello
 const hello
 
-+def main() {
+def main() {
    out("Hello, World!")
 }
