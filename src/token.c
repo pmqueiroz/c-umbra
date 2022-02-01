@@ -1,7 +1,7 @@
 #include "../include/token.h"
 
 Token* token_create(int type, char* value, int line) {
-  Token* token = (Token*) malloc(sizeof(Token));
+   Token* token = (Token*) malloc(sizeof(Token));
 
    token->type = type;
    token->value = value;
@@ -16,7 +16,7 @@ void token_destroy(Token* token) {
 
 void token_list_add(TokenList* list, Token* token) {
    if (list->ptr >= list->size) {
-      list->size *= 2;
+      list->size += 1;
       list->value = (Token**) realloc(list->value, sizeof(Token**) * list->size);
    }
 

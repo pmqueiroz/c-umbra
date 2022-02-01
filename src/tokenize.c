@@ -20,6 +20,11 @@ void generate_tokens(char* code, TokenList* list) {
          token_list_add(list, token_create(TOKEN_TYPE__MUTABLE, lexeme, line));
       }
 
+      // assignment operator
+      if (strcmp(lexeme, "<-") == 0) {
+         token_list_add(list, token_create(TOKEN_TYPE__ASSIGNMENT, lexeme, line));
+      }
+
       // new line
       if (code[i] == '\n') {
          line++;
