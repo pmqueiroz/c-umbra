@@ -1,4 +1,4 @@
-#include "../include/tokenize.h"
+#include "../include/tokenizer.h"
 #include <stdio.h>
 
 void generate_tokens(char* code, TokenList* list) {

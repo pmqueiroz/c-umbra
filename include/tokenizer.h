@@ -1,5 +1,5 @@
-#ifndef UMBRA_TOKENIZE_H
-#define UMBRA_TOKENIZE_H
+#ifndef UMBRA_TOKENIZER_H
+#define UMBRA_TOKENIZER_H
 
 #include <string.h>
 #include "token.h"
