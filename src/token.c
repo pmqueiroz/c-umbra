@@ -2,9 +2,11 @@
 
 Token* token_create(int type, char* value, int line) {
    Token* token = (Token*) malloc(sizeof(Token));
+   char* allocated_value = (char*) malloc(sizeof(value));
+   strcpy(allocated_value, value);
 
    token->type = type;
-   token->value = value;
+   token->value = allocated_value;
    token->line = line;
 
    return token;

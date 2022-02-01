@@ -1,4 +1,5 @@
 #include "../include/tokenize.h"
+#include <stdio.h>
 
 void generate_tokens(char* code, TokenList* list) {
    char lexeme[256];

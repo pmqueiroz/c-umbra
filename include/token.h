@@ -2,6 +2,7 @@
 #define UMBRA_TOKEN_H
 
 #include <stdlib.h>
+#include <string.h>
 
 enum _TokenType {
    TOKEN_TYPE__MUTABLE,
