@@ -1,6 +1,6 @@
-#include "../include/interpreter.h"
+#include "../include/tokenize.h"
 
-void interpreter_run(char* code, TokenList* list) {
+void generate_tokens(char* code, TokenList* list) {
    char lex[256];
    int lexi = 0;
    int i = 0;

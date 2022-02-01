@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "../include/util.h"
-#include "../include/interpreter.h"
+#include "../include/tokenize.h"
 #include "../include/token.h"
 
 int main(int argc, char** argv) {
@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
 
    char* code = read_file(argv[1]);
    TokenList tokens = {0};
-   interpreter_run(code, &tokens);
+   generate_tokens(code, &tokens);
 
    for (int i = 0; i < tokens.ptr; i++) {
       Token* token = token_list_get(&tokens, i);
