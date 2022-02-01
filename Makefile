@@ -14,6 +14,10 @@ ${EXECUTABLE}: ${OBJ_FILES}
 %.o: %.c ${HEADER_FILES}
 	@${CC} ${CFLAGS} $< -o $@
 
+configure:
+	@echo "Configuring..."
+	@git submodule update --init
+
 clean:
 	@rm ${OBJ_FILES} ${EXECUTABLE}
 

@@ -4,8 +4,8 @@
 
 ```sh
 $ git clone git@github.com:umbra-lang/umbra.git
-$ git submodule init
-$ git submodule update
+$ cd umbra
+$ make configure
 ```
 
 ## Compiling and testing

@@ -12,7 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: make
+      - name: configure
         run: make
-      - name: make test
+      - name: compile
+        run: make
+      - name: test
         run: make test
