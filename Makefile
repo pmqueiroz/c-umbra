@@ -21,5 +21,5 @@ run:
 	@./${EXECUTABLE}
 
 test:
-	@./${EXECUTABLE} __test__/index.umb
+	@./${EXECUTABLE} example/example.u
 
