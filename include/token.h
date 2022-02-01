@@ -4,8 +4,7 @@
 #include <stdlib.h>
 
 enum _TokenType {
-   TOKEN_TYPE_VARIABLE,
-   TOKEN_TYPE_CONSTANT
+   TOKEN_TYPE_MUTABLE
 };
 
 struct _Token {

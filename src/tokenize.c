@@ -1,23 +1,23 @@
 #include "../include/tokenize.h"
 
 void generate_tokens(char* code, TokenList* list) {
-   char lex[256];
+   char lexeme[256];
    int lexi = 0;
    int i = 0;
    int line = 1;
 
    while (1) {
-      memset(lex, 0, 256);
+      memset(lexeme, 0, sizeof(lexeme));
 
       while (code[i] != ' ' && code[i] != '\n' && code[i] != '\0') {
-         lex[lexi++] = code[i++];
+         lexeme[lexi++] = code[i++];
       }
 
-      lex[lexi] = '\0';
+      lexeme[lexi] = '\0';
 
-      // var instruction
-      if (strcmp(lex, "var") == 0) {
-         token_list_add(list, token_create(TOKEN_TYPE_VARIABLE, 1 ,line));
+      // mutable instruction
+      if (strcmp(lexeme, "mut") == 0) {
+         token_list_add(list, token_create(TOKEN_TYPE_MUTABLE, 1, line));
       }
 
       // new line
