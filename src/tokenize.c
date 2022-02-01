@@ -17,7 +17,7 @@ void generate_tokens(char* code, TokenList* list) {
 
       // mutable instruction
       if (strcmp(lexeme, "mut") == 0) {
-         token_list_add(list, token_create(TOKEN_TYPE_MUTABLE, 1, line));
+         token_list_add(list, token_create(TOKEN_TYPE__MUTABLE, lexeme, line));
       }
 
       // new line

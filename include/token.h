@@ -4,18 +4,19 @@
 #include <stdlib.h>
 
 enum _TokenType {
-   TOKEN_TYPE_MUTABLE
+   TOKEN_TYPE__MUTABLE,
+   TOKEN_TYPE__ASSIGNMENT,
 };
 
 struct _Token {
    int type;
-   int value;
+   char* value;
    int line;
 };
 
 typedef struct _Token Token;
 
-Token* token_create(int type, int value, int line);
+Token* token_create(int type, char* value, int line);
 void token_destroy(Token* token);
 
 struct _TokenList {
