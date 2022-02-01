@@ -18,5 +18,7 @@ clean:
 	@rm ${OBJ_FILES} ${EXECUTABLE}
 
 test:
-	@./${EXECUTABLE} example/example.umb > output
+	@./${EXECUTABLE} example/example.umb
 
+test-outfile:
+	@make test > output
