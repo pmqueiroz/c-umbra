@@ -18,5 +18,5 @@ clean:
 	@rm ${OBJ_FILES} ${EXECUTABLE}
 
 test:
-	@./${EXECUTABLE} example/example.u
+	@./${EXECUTABLE} example/example.u > output
 
