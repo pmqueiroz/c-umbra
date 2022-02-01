@@ -17,9 +17,6 @@ ${EXECUTABLE}: ${OBJ_FILES}
 clean:
 	@rm ${OBJ_FILES} ${EXECUTABLE}
 
-run:
-	@./${EXECUTABLE}
-
 test:
 	@./${EXECUTABLE} example/example.u
 
