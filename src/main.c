@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "../include/util.h"
-#include "../include/tokenize.h"
+#include "../include/tokenizer.h"
 #include "../include/token.h"
 
 int main(int argc, char** argv) {
