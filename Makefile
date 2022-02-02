@@ -25,4 +25,4 @@ test:
 	@./${EXECUTABLE} example/example.umb
 
 test-outfile:
-	@make test > output
+	@make --no-print-directory test > output
