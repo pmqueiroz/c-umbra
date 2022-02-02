@@ -12,6 +12,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Install compiler
+        uses: rlalik/setup-cpp-compiler@v1
+        with:
+          compiler: latest
       - name: configure
         run: make
       - name: compile
