@@ -10,12 +10,15 @@ enum _TokenType {
    STRING_TYPE__KEYWORD,
    NUMBER_TYPE__KEYWORD,
    MODULE_DEF__KEYWORD,
+   IDENTIFIER__KEYWORD,
    ASSIGNMENT__OPERATOR,
    COMMENT__OPERATOR
 };
 
+typedef enum _TokenType TokenType;
+
 struct _Token {
-   int type;
+   TokenType type;
    char* value;
    int line;
 };
