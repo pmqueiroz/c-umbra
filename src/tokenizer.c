@@ -33,11 +33,11 @@ static void push_token(TokenList* list, char* value, int line) {
    } else {
       TokenType operator_attempt = get_operator(value);
 
-         if (operator_attempt != UNKNOWN__KEYWORD) {
-            type = operator_attempt;
-         } else {
-            type = IDENTIFIER__KEYWORD;
-         }
+      if (operator_attempt != UNKNOWN__KEYWORD) {
+         type = operator_attempt;
+      } else {
+         type = IDENTIFIER__KEYWORD;
+      }
    }
 
    token_list_add(list, token_create(type, value, line));
@@ -45,10 +45,10 @@ static void push_token(TokenList* list, char* value, int line) {
 
 void generate_tokens(char* code, TokenList* list) {
    char lexeme[256];
-   int lexi = 0;
-   int i = 0;
-   int line = 1;
-   int curr_ignored_line = -1;
+   int  lexi              = 0;
+   int  i                 = 0;
+   int  line              = 1;
+   int  curr_ignored_line = -1;
 
    while (1) {
       while (code[i] != '\n' && code[i] != '\0') {
@@ -61,7 +61,7 @@ void generate_tokens(char* code, TokenList* list) {
          if (code[i] == ' ' && curr_ignored_line != line) {
             break;
          }
-         
+
          if (curr_ignored_line != line) {
             lexeme[lexi++] = code[i++];
          } else {
@@ -73,14 +73,14 @@ void generate_tokens(char* code, TokenList* list) {
       if (code[i] == '\n') {
          line++;
       }
-      
+
       // eof
       if (code[i] == '\0') {
          break;
       }
 
       lexeme[lexi] = '\0';
-      
+
       if (lexeme[0] != '\0') {
          push_token(list, lexeme, line);
       }
