@@ -80,8 +80,10 @@ void generate_tokens(char* code, TokenList* list) {
       }
 
       lexeme[lexi] = '\0';
-
-      push_token(list, lexeme, line);
+      
+      if (lexeme[0] != '\0') {
+         push_token(list, lexeme, line);
+      }
 
       lexi = 0;
       i++;
