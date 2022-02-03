@@ -48,16 +48,27 @@ void generate_tokens(char* code, TokenList* list) {
    int lexi = 0;
    int i = 0;
    int line = 1;
+   int curr_ignored_line = -1;
 
    while (1) {
-      while (code[i] != ' ' && code[i] != '\n' && code[i] != '\0') {
-         lexeme[lexi++] = code[i++];
+      while (code[i] != '\n' && code[i] != '\0') {
+         if (code[i] == '#') {
+            curr_ignored_line = line;
+            i++;
+            continue;
+         }
+
+         if (code[i] == ' ' && curr_ignored_line != line) {
+            break;
+         }
+         
+         if (curr_ignored_line != line) {
+            lexeme[lexi++] = code[i++];
+         } else {
+            i++;
+         }
       }
 
-      lexeme[lexi] = '\0';
-
-      push_token(list, lexeme, line);
-      
       // new line
       if (code[i] == '\n') {
          line++;
@@ -67,6 +78,10 @@ void generate_tokens(char* code, TokenList* list) {
       if (code[i] == '\0') {
          break;
       }
+
+      lexeme[lexi] = '\0';
+
+      push_token(list, lexeme, line);
 
       lexi = 0;
       i++;
