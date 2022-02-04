@@ -28,9 +28,10 @@ int get_two_char_operator(int c1, int c2) {
    switch (c1) {
       case '<':
          switch (c2) {
-            case '-': return ASSIGNMENT__OPERATOR;
+            case '-':
+               return ASSIGNMENT__OPERATOR;
          }
-        break;
+         break;
       default:
          return UNKNOWN__KEYWORD;
          break;
