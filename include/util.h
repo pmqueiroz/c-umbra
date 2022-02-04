@@ -8,4 +8,6 @@ char* read_file(const char* path);
 
 void toggle_bool(int* b);
 
+int get_lexeme_length(const char* lexeme);
+
 #endif
