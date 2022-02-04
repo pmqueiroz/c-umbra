@@ -43,12 +43,15 @@ static void push_token(TokenList* list, char* value, int line) {
    token_list_add(list, token_create(type, value, line));
 }
 
+static int is_statement_operator(char c) { return c == '{' || c == '(' || c == ')' || c == '}'; }
+
 void generate_tokens(char* code, TokenList* list) {
    char lexeme[256];
    int  lexi              = 0;
    int  i                 = 0;
    int  line              = 1;
    int  curr_ignored_line = -1;
+   int  is_string         = 0;
 
    while (1) {
       while (code[i] != '\n' && code[i] != '\0') {
@@ -58,7 +61,16 @@ void generate_tokens(char* code, TokenList* list) {
             continue;
          }
 
-         if (code[i] == ' ' && curr_ignored_line != line) {
+         if (code[i] == '"' || code[i] == '\'') {
+            toggle_bool(&is_string);
+         }
+
+         if (code[i] == ' ' && curr_ignored_line != line && !is_string) {
+            break;
+         }
+
+         if (is_statement_operator(code[i + 1])) {
+            lexeme[lexi++] = code[i++];
             break;
          }
 
