@@ -1,6 +1,43 @@
 #include "../include/tokenizer.h"
 #include <stdio.h>
 
+int get_one_char_operator(int c1) {
+   switch (c1) {
+      case '#':
+         return COMMENT__OPERATOR;
+         break;
+      case '(':
+         return OPEN_BRACKETS__OPERATOR;
+         break;
+      case ')':
+         return CLOSE_BRACKETS__OPERATOR;
+         break;
+      case '{':
+         return OPEN_CURLY_BRACES__OPERATOR;
+         break;
+      case '}':
+         return CLOSE_CURLY_BRACES__OPERATOR;
+         break;
+      default:
+         return UNKNOWN__KEYWORD;
+         break;
+   }
+}
+
+int get_two_char_operator(int c1, int c2) {
+   switch (c1) {
+      case '<':
+         switch (c2) {
+            case '-':
+               return ASSIGNMENT__OPERATOR;
+         }
+         break;
+      default:
+         return UNKNOWN__KEYWORD;
+         break;
+   }
+}
+
 static TokenType get_instance(const char* buf) {
    if (strcmp(buf, "mut") == 0)
       return MUTABLE__KEYWORD;
@@ -16,10 +53,23 @@ static TokenType get_instance(const char* buf) {
 }
 
 static TokenType get_operator(const char* buf) {
-   if (strcmp(buf, "<-") == 0)
-      return ASSIGNMENT__OPERATOR;
-   if (strcmp(buf, "#") == 0)
-      return COMMENT__OPERATOR;
+   int len = get_lexeme_length(buf);
+
+   switch (len) {
+      case 1:
+         return get_one_char_operator(buf[0]);
+         break;
+      case 2:
+         return get_two_char_operator(buf[0], buf[1]);
+         break;
+      case 3:
+         return UNKNOWN__KEYWORD; // todo get_three_char_operator;
+         break;
+      default:
+         return UNKNOWN__KEYWORD;
+         break;
+   }
+
    return UNKNOWN__KEYWORD;
 }
 

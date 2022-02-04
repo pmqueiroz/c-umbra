@@ -26,3 +26,11 @@ char* read_file(const char* path) {
 }
 
 void toggle_bool(int* b) { *b = !(*b); }
+
+int get_lexeme_length(const char* lexeme) {
+   int i = 0;
+   while (lexeme[i] != '\0') {
+      i++;
+   }
+   return i;
+}
