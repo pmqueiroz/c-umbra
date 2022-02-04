@@ -4,9 +4,6 @@
 
 ![code](https://img.shields.io/github/languages/code-size/umbra-lang/umbra)
 
-<br/>
-<br/>
-
 ## Cloning and setting up project
 
 ```sh
