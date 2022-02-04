@@ -15,8 +15,7 @@ jobs:
       - name: configure
         run: |
           make configure
-          ls
-          pwd
+          ls vcpkg
           ./install_dependencies.sh
       - name: setup an run tests
         working-directory: ./tests
