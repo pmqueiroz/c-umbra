@@ -1,0 +1,22 @@
+name: Unit tests 
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: configure
+        run: make configure
+      - name: cd
+        run: cd tests
+      - name: compile
+        run: make
+      - name: tests
+        run: make run-tests

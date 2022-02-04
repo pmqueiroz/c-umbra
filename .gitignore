@@ -2,3 +2,4 @@
 *.o
 umbra
 output
+tests_suites
