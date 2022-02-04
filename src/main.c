@@ -36,12 +36,15 @@ static void print_tokens(TokenList* list) {
    }
 
    for (int i = 0; i < list->ptr; i++) {
-      Token* token      = token_list_get(list, i);
-      char*  token_name = get_token_type_name(token->type);
+      Token* token       = token_list_get(list, i);
+      char*  token_name  = get_token_type_name(token->type);
+      char*  keywords_ws = generate_white_spaces(get_lexeme_length(token_name), MAX_TYPE_SIZE);
+      char*  values_ws   = generate_white_spaces(get_lexeme_length(token->value), max_value_size);
 
-      printf(template, token_name,
-             generate_white_spaces(get_lexeme_length(token_name), MAX_TYPE_SIZE), token->value,
-             generate_white_spaces(get_lexeme_length(token->value), max_value_size), token->line);
+      printf(template, token_name, keywords_ws, token->value, values_ws, token->line);
+
+      free(keywords_ws);
+      free(values_ws);
    }
 }
 
