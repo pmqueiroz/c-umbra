@@ -14,9 +14,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: configure
         run: make configure
-      - name: cd
-        run: cd tests
-      - name: compile
-        run: make
-      - name: tests
-        run: make run-tests
+      - name: setup an run tests
+        working-directory: ./tests
+        run: |
+          make
+          make run-tests
