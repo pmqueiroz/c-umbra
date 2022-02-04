@@ -19,7 +19,8 @@ int main(int argc, char** argv) {
 
    for (int i = 0; i < tokens.ptr; i++) {
       Token* token = token_list_get(&tokens, i);
-      printf("<type: %d, value: '%s', line: %d>\n", token->type, token->value, token->line);
+      printf("<type: %s, value: '%s', line: %d>\n", get_token_type_name(token->type), token->value,
+             token->line);
    }
 
    free(code);

@@ -21,6 +21,16 @@ enum _TokenType {
 
 typedef enum _TokenType TokenType;
 
+static inline char* get_token_type_name(TokenType type) {
+   char* strings[] = {
+       "UNKNOWN__KEYWORD",         "IDENTIFIER__KEYWORD",         "MUTABLE__KEYWORD",
+       "STRING_TYPE__KEYWORD",     "NUMBER_TYPE__KEYWORD",        "MODULE_DEF__KEYWORD",
+       "ASSIGNMENT__OPERATOR",     "COMMENT__OPERATOR",           "OPEN_BRACKETS__OPERATOR",
+       "CLOSE_BRACKETS__OPERATOR", "OPEN_CURLY_BRACES__OPERATOR", "CLOSE_CURLY_BRACES__OPERATOR"};
+
+   return strings[type + 1];
+}
+
 struct _Token {
    TokenType type;
    char*     value;
