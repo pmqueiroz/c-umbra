@@ -9,7 +9,7 @@ if [ -d "$VCPKG__DIR" ]; then
       echo "vcpkg build found"
    else
       echo "Installing vcpkg"
-      $VCPKG__DIR/bootstrap-vcpkg.
+      $VCPKG__DIR/bootstrap-vcpkg.sh
    fi
 
    for DEPENDENCY in "${DEPENDENCIES[@]}"

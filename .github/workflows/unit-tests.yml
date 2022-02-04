@@ -1,0 +1,24 @@
+name: Unit tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: configure
+        run: |
+          make configure
+          ls vcpkg
+          ./install_dependencies.sh
+      - name: setup an run tests
+        working-directory: ./tests
+        run: |
+          make
+          make run-tests
