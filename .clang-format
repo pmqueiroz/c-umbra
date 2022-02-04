@@ -9,7 +9,7 @@ AlwaysBreakAfterReturnType: None
 AlwaysBreakBeforeMultilineStrings: 'false'
 BinPackArguments: 'true'
 BinPackParameters: 'true'
-ColumnLimit: '1000'
+ColumnLimit: '100'
 IndentCaseLabels: 'true'
 IndentPPDirectives: AfterHash
 IndentWidth: '3'
