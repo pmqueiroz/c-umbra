@@ -6,4 +6,6 @@
 
 char* read_file(const char* path);
 
+void toggle_bool(int* b);
+
 #endif

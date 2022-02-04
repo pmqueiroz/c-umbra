@@ -24,3 +24,7 @@ char* read_file(const char* path) {
 
    return buffer;
 }
+
+void toggle_bool(int* b) {
+   *b = !(*b);
+}
