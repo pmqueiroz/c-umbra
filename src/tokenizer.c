@@ -90,7 +90,7 @@ static void push_token(TokenList* list, char* value, int line) {
       }
    }
 
-   token_list_add(list, token_create(type, value, line));
+   token_list_add(list, token_create(type, value, line, 0));
 }
 
 static int is_statement_operator(char c) { return c == '{' || c == '(' || c == ')' || c == '}'; }

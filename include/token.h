@@ -70,11 +70,12 @@ struct _Token {
    TokenType type;
    char*     value;
    int       line;
+   int       column;
 };
 
 typedef struct _Token Token;
 
-Token* token_create(int type, char* value, int line);
+Token* token_create(int type, char* value, int line, int column);
 void   token_destroy(Token* token);
 
 struct _TokenList {
