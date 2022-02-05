@@ -1,12 +1,15 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/bin/bash
 
 tempfile=$(mktemp)
 
-for FILE in $(ls src/*.c include/*.h)
+for FILE in $(git diff --cached --name-only | sed 's| |\\ |g')
    do
-      clang-format $FILE > "$tempfile"
-      mv "$tempfile" "$FILE"
+      if [[ ($FILE == *.c) || ($FILE == *.h) ]]
+      then
+         clang-format $FILE > "$tempfile"
+         mv "$tempfile" "$FILE"
+         git add "$FILE"
+      fi
    done
 
 trap '{ rm -f -- "$tempfile"; }' EXIT
