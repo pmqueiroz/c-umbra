@@ -73,7 +73,7 @@ static TokenType get_operator(const char* buf) {
    return UNKNOWN__KEYWORD;
 }
 
-static void push_token(TokenList* list, char* value, int line) {
+static void push_token(TokenList* list, char* value, int line, int column) {
    TokenType type;
 
    TokenType instance_attempt = get_instance(value);
@@ -90,7 +90,7 @@ static void push_token(TokenList* list, char* value, int line) {
       }
    }
 
-   token_list_add(list, token_create(type, value, line));
+   token_list_add(list, token_create(type, value, line, column));
 }
 
 static int is_statement_operator(char c) { return c == '{' || c == '(' || c == ')' || c == '}'; }
@@ -100,11 +100,14 @@ void generate_tokens(char* code, TokenList* list) {
    int  lexi              = 0;
    int  i                 = 0;
    int  line              = 1;
+   int  col               = 0;
    int  curr_ignored_line = -1;
    int  is_string         = 0;
 
    while (1) {
       while (code[i] != '\n' && code[i] != '\0') {
+         col++;
+
          if (code[i] == '#') {
             curr_ignored_line = line;
             i++;
@@ -133,6 +136,7 @@ void generate_tokens(char* code, TokenList* list) {
 
       // new line
       if (code[i] == '\n') {
+         col = 0;
          line++;
       }
 
@@ -144,7 +148,7 @@ void generate_tokens(char* code, TokenList* list) {
       lexeme[lexi] = '\0';
 
       if (lexeme[0] != '\0') {
-         push_token(list, lexeme, line);
+         push_token(list, lexeme, line, col);
       }
 
       lexi = 0;

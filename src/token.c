@@ -1,13 +1,14 @@
 #include "../include/token.h"
 
-Token* token_create(int type, char* value, int line) {
+Token* token_create(int type, char* value, int line, int column) {
    Token* token           = (Token*)malloc(sizeof(Token));
    char*  allocated_value = (char*)malloc(sizeof(value));
    strcpy(allocated_value, value);
 
-   token->type  = type;
-   token->value = allocated_value;
-   token->line  = line;
+   token->type   = type;
+   token->value  = allocated_value;
+   token->line   = line;
+   token->column = column;
 
    return token;
 }
