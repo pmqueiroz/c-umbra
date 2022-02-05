@@ -1,0 +1,12 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+tempfile=$(mktemp)
+
+for FILE in $(ls src/*.c include/*.h)
+   do
+      clang-format $FILE > "$tempfile"
+      mv "$tempfile" "$FILE"
+   done
+
+trap '{ rm -f -- "$tempfile"; }' EXIT
