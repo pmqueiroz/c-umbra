@@ -23,7 +23,7 @@ static char* generate_white_spaces(int n, int max) {
 }
 
 static void print_tokens(TokenList* list) {
-   char* template     = "<type: %s, %s value: '%s', %s line: %d>\n";
+   char* template     = "<type: %s, %s value: '%s', %s ln: %d, col: %d>\n";
    int max_value_size = 0;
 
    for (int i = 0; i < list->ptr; i++) {
@@ -41,7 +41,8 @@ static void print_tokens(TokenList* list) {
       char*  keywords_ws = generate_white_spaces(get_lexeme_length(token_name), MAX_TYPE_SIZE);
       char*  values_ws   = generate_white_spaces(get_lexeme_length(token->value), max_value_size);
 
-      printf(template, token_name, keywords_ws, token->value, values_ws, token->line);
+      printf(template, token_name, keywords_ws, token->value, values_ws, token->line,
+             token->column);
 
       free(keywords_ws);
       free(values_ws);
