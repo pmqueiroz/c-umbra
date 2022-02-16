@@ -1,11 +1,13 @@
 #include "../include/parser.h"
 
-Symbol* symbol_create(char* id, DataType type, char* value) {
+Symbol* symbol_create(char* id, DataType type, char* value, int mutable) {
    Symbol* symbol = (Symbol*)malloc(sizeof(Symbol));
 
    symbol->id    = id;
    symbol->type  = type;
    symbol->value = value;
+   // TODO fix this null
+   symbol->readonly = NULL;
 
    return symbol;
 }
@@ -41,8 +43,10 @@ static DataType get_var_type(const char* buf) {
 }
 
 void assign_var(SymbolTable* table, TokenList* list, int tokenLine) {
-   TokenList tempList = {0};
+   TokenList tempList       = {0};
+   int       is_mutable_var = 0;
 
+   // TODO move this responsibility and only receive the temp token list
    for (int i = 0; i < list->ptr; i++) {
       Token* token = token_list_get(list, i);
 
@@ -51,31 +55,24 @@ void assign_var(SymbolTable* table, TokenList* list, int tokenLine) {
       }
    }
 
-   // first lexeme should be the variable type
-   DataType varType = get_var_type(tempList.value[0]->value);
-
-   // second lexeme should be the variable name
-   char* varName = tempList.value[1]->value;
+   if (strcmp(tempList.value[0]->value, "mut") == 0) {
+      toggle_bool(&is_mutable_var);
+   }
 
    // third lexeme should be the assignment operator
-   if (strcmp(tempList.value[2]->value, "<-") != 0)
+   if (strcmp(tempList.value[2 + is_mutable_var]->value, "<-") != 0)
       throw_sytax_error("Invalid assignment operator");
 
-   // fourth lexeme should be the variable value
-   char* varValue = tempList.value[3]->value;
+   // first lexeme should be the variable type
+   DataType varType = get_var_type(tempList.value[0 + is_mutable_var]->value);
 
-   Symbol* sym = symbol_create(varName, varType, varValue);
+   // second lexeme should be the variable name
+   char* varName = tempList.value[1 + is_mutable_var]->value;
+
+   // fourth lexeme should be the variable value
+   char* varValue = tempList.value[3 + is_mutable_var]->value;
+
+   Symbol* sym = symbol_create(varName, varType, varValue, 2);
 
    symbol_table_add(table, sym);
 }
-
-// void generate_symbol_table(SymbolTable* table, TokenList* list) {
-//    for (int i = 0; i < list->ptr; i++) {
-//       Token* token = token_list_get(list, i);
-
-//       if (token->type == IDENTIFIER__KEYWORD) {
-//          Symbol* symbol = symbol_create(token);
-//          symbol_table_add(table, symbol);
-//       }
-//    }
-// }

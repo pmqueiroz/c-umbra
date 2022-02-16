@@ -51,15 +51,16 @@ static void print_tokens(TokenList* list) {
 }
 
 void print_table(SymbolTable* table) {
-   char* template = "| %d, %s, %s |\n";
+   char* template = "| %d, %s, %s, %s |\n";
 
    for (int i = 0; i < table->ptr; i++) {
-      Symbol*  symbol = symbol_table_get(table, i);
-      DataType type   = symbol->type;
-      char*    id     = symbol->id;
-      char*    value  = symbol->value;
+      Symbol*  symbol   = symbol_table_get(table, i);
+      DataType type     = symbol->type;
+      char*    id       = symbol->id;
+      char*    value    = symbol->value;
+      int      readonly = symbol->readonly;
 
-      printf(template, type, id, value);
+      printf(template, type, id, value, readonly);
    }
 }
 
@@ -83,6 +84,7 @@ int main(int argc, char** argv) {
    // generate_symbol_table(&symbols, &tokens);
 
    assign_var(&symbols, &tokens, 5);
+   assign_var(&symbols, &tokens, 6);
 
    print_table(&symbols);
 
