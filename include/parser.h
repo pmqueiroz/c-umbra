@@ -1,15 +1,17 @@
 #ifndef UMBRA_PARSER_H
 #define UMBRA_PARSER_H
 
+#include "error.h"
 #include "token.h"
 
-enum _DataType { DT__NUM, DT__STR, DT__BOOL, DT__HASH_TABLE, DT__FUNCTION, DT__ARRAY };
+enum _DataType { DT__NUM, DT__STR, DT__BOOL, DT__HASH_TABLE, DT__ARRAY };
 
 typedef enum _DataType DataType;
 
 struct _Symbol {
    DataType type;
    char*    id;
+   char*    value;
 };
 
 typedef struct _Symbol Symbol;
@@ -22,11 +24,15 @@ struct _SymbolTable {
 
 typedef struct _SymbolTable SymbolTable;
 
-Symbol* symbol_create(Token* token);
+Symbol* symbol_create(char* id, DataType type, char* value);
 
 void symbol_destroy(Symbol* symbol);
 
 void    symbol_table_add(SymbolTable* table, Symbol* symbol);
 Symbol* symbol_table_get(SymbolTable* table, int index);
+
+void generate_symbol_table(SymbolTable* table, TokenList* list);
+
+void assign_var(SymbolTable* table, TokenList* list, int tokenLine);
 
 #endif
