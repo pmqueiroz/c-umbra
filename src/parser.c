@@ -1,13 +1,13 @@
 #include "../include/parser.h"
 
-Symbol* symbol_create(char* id, DataType type, char* value, int mutable) {
+Symbol* symbol_create(char* id, DataType type, char* value, Bool mutable) {
    Symbol* symbol = (Symbol*)malloc(sizeof(Symbol));
 
    symbol->id    = id;
    symbol->type  = type;
    symbol->value = value;
    // TODO fix this null
-   symbol->readonly = NULL;
+   symbol->readonly = 0;
 
    return symbol;
 }
@@ -27,19 +27,27 @@ Symbol* symbol_table_get(SymbolTable* table, int index) { return table->value[in
 
 DataType get_symbol_type(char* lexeme) {}
 
-static DataType get_var_type(const char* buf) {
-   if (strcmp(buf, "str") == 0)
-      return DT__STR;
-   if (strcmp(buf, "num") == 0)
-      return DT__NUM;
-   if (strcmp(buf, "bool") == 0)
-      return DT__BOOL;
-   if (strcmp(buf, "hash") == 0)
-      return DT__HASH_TABLE;
-   if (strcmp(buf, "arr") == 0)
-      return DT__ARRAY;
-
-   throw_sytax_error("Invalid variable type");
+static DataType get_var_type(const TokenType type) {
+   switch (type) {
+      case STRING_TYPE__KEYWORD:
+         return DT__STR;
+         break;
+      case NUMBER_TYPE__KEYWORD:
+         return DT__NUM;
+         break;
+      case BOOL_TYPE__KEYWORD:
+         return DT__BOOL;
+         break;
+      case HASH_TABLE_TYPE__KEYWORD:
+         return DT__HASH_TABLE;
+         break;
+      case ARR_TYPE__KEYWORD:
+         return DT__ARRAY;
+         break;
+      default:
+         throw_sytax_error("Invalid variable type");
+         break;
+   }
 }
 
 void assign_var(SymbolTable* table, TokenList* list, int tokenLine) {
@@ -55,16 +63,16 @@ void assign_var(SymbolTable* table, TokenList* list, int tokenLine) {
       }
    }
 
-   if (strcmp(tempList.value[0]->value, "mut") == 0) {
+   if (tempList.value[0]->type == MUTABLE__KEYWORD) {
       toggle_bool(&is_mutable_var);
    }
 
    // third lexeme should be the assignment operator
-   if (strcmp(tempList.value[2 + is_mutable_var]->value, "<-") != 0)
+   if (tempList.value[2 + is_mutable_var]->type != ASSIGNMENT__OPERATOR)
       throw_sytax_error("Invalid assignment operator");
 
    // first lexeme should be the variable type
-   DataType varType = get_var_type(tempList.value[0 + is_mutable_var]->value);
+   DataType varType = get_var_type(tempList.value[0 + is_mutable_var]->type);
 
    // second lexeme should be the variable name
    char* varName = tempList.value[1 + is_mutable_var]->value;
@@ -72,7 +80,7 @@ void assign_var(SymbolTable* table, TokenList* list, int tokenLine) {
    // fourth lexeme should be the variable value
    char* varValue = tempList.value[3 + is_mutable_var]->value;
 
-   Symbol* sym = symbol_create(varName, varType, varValue, 2);
+   Symbol* sym = symbol_create(varName, varType, varValue, is_mutable_var);
 
    symbol_table_add(table, sym);
 }

@@ -11,9 +11,9 @@ typedef enum _DataType DataType;
 
 struct _Symbol {
    DataType type;
+   Bool     readonly;
    char*    id;
    char*    value;
-   int      readonly;
 };
 
 typedef struct _Symbol Symbol;

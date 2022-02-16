@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define Bool int
+
 char* read_file(const char* path);
 
 void toggle_bool(int* b);

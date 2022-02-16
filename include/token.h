@@ -10,6 +10,9 @@ enum _TokenType {
    MUTABLE__KEYWORD,             // mut
    STRING_TYPE__KEYWORD,         // str
    NUMBER_TYPE__KEYWORD,         // num
+   BOOL_TYPE__KEYWORD,           // bool
+   HASH_TABLE_TYPE__KEYWORD,     // obj
+   ARR_TYPE__KEYWORD,            // arr
    MODULE_DEF__KEYWORD,          // package
    ASSIGNMENT__OPERATOR,         // <-
    COMMENT__OPERATOR,            // #
@@ -41,6 +44,9 @@ static inline char* get_token_type_name(TokenType type) {
                       "MUTABLE__KEYWORD",
                       "STRING_TYPE__KEYWORD",
                       "NUMBER_TYPE__KEYWORD",
+                      "BOOL_TYPE__KEYWORD",
+                      "HASH_TABLE_TYPE__KEYWORD",
+                      "ARR_TYPE__KEYWORD",
                       "MODULE_DEF__KEYWORD",
                       "ASSIGNMENT__OPERATOR",
                       "COMMENT__OPERATOR",
