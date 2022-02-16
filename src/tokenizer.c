@@ -45,6 +45,12 @@ static TokenType get_instance(const char* buf) {
       return STRING_TYPE__KEYWORD;
    if (strcmp(buf, "num") == 0)
       return NUMBER_TYPE__KEYWORD;
+   if (strcmp(buf, "bool") == 0)
+      return BOOL_TYPE__KEYWORD;
+   if (strcmp(buf, "obj") == 0)
+      return HASH_TABLE_TYPE__KEYWORD;
+   if (strcmp(buf, "arr") == 0)
+      return ARR_TYPE__KEYWORD;
    if (strcmp(buf, "package") == 0)
       return MODULE_DEF__KEYWORD;
    if (strcmp(buf, "mut") == 0)
