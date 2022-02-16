@@ -10,7 +10,6 @@ typedef enum _DataType DataType;
 struct _Symbol {
    DataType type;
    char*    id;
-   int      memloc;
 };
 
 typedef struct _Symbol Symbol;
@@ -27,7 +26,7 @@ Symbol* symbol_create(Token* token);
 
 void symbol_destroy(Symbol* symbol);
 
-void    symbol_table_add(SymbolTable* table, Symbol symbol);
+void    symbol_table_add(SymbolTable* table, Symbol* symbol);
 Symbol* symbol_table_get(SymbolTable* table, int index);
 
 #endif
