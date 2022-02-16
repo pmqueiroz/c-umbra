@@ -11,9 +11,9 @@ typedef enum _DataType DataType;
 
 struct _Symbol {
    DataType type;
-   Bool     readonly;
-   char*    id;
-   char*    value;
+   InternalBool mutable;
+   char* id;
+   char* value;
 };
 
 typedef struct _Symbol Symbol;
@@ -26,7 +26,7 @@ struct _SymbolTable {
 
 typedef struct _SymbolTable SymbolTable;
 
-Symbol* symbol_create(char* id, DataType type, char* value, int mutable);
+Symbol* symbol_create(char* id, DataType type, char* value, InternalBool mutable);
 
 void symbol_destroy(Symbol* symbol);
 

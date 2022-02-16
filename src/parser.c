@@ -1,13 +1,12 @@
 #include "../include/parser.h"
 
-Symbol* symbol_create(char* id, DataType type, char* value, Bool mutable) {
+Symbol* symbol_create(char* id, DataType type, char* value, InternalBool mutable) {
    Symbol* symbol = (Symbol*)malloc(sizeof(Symbol));
 
-   symbol->id    = id;
-   symbol->type  = type;
-   symbol->value = value;
-   // TODO fix this null
-   symbol->readonly = 0;
+   symbol->id      = id;
+   symbol->type    = type;
+   symbol->value   = value;
+   symbol->mutable = mutable;
 
    return symbol;
 }
@@ -51,8 +50,8 @@ static DataType get_var_type(const TokenType type) {
 }
 
 void assign_var(SymbolTable* table, TokenList* list, int tokenLine) {
-   TokenList tempList       = {0};
-   int       is_mutable_var = 0;
+   TokenList    tempList       = {0};
+   InternalBool is_mutable_var = 0;
 
    // TODO move this responsibility and only receive the temp token list
    for (int i = 0; i < list->ptr; i++) {
