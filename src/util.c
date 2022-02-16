@@ -25,7 +25,7 @@ char* read_file(const char* path) {
    return buffer;
 }
 
-void toggle_bool(int* b) { *b = !(*b); }
+void toggle_bool(InternalBool* b) { *b = !(*b); }
 
 int get_lexeme_length(const char* lexeme) {
    int i = 0;

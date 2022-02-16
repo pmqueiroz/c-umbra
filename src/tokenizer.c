@@ -45,6 +45,12 @@ static TokenType get_instance(const char* buf) {
       return STRING_TYPE__KEYWORD;
    if (strcmp(buf, "num") == 0)
       return NUMBER_TYPE__KEYWORD;
+   if (strcmp(buf, "bool") == 0)
+      return BOOL_TYPE__KEYWORD;
+   if (strcmp(buf, "obj") == 0)
+      return HASH_TABLE_TYPE__KEYWORD;
+   if (strcmp(buf, "arr") == 0)
+      return ARR_TYPE__KEYWORD;
    if (strcmp(buf, "package") == 0)
       return MODULE_DEF__KEYWORD;
    if (strcmp(buf, "mut") == 0)
@@ -96,13 +102,13 @@ static void push_token(TokenList* list, char* value, int line, int column) {
 static int is_statement_operator(char c) { return c == '{' || c == '(' || c == ')' || c == '}'; }
 
 void generate_tokens(char* code, TokenList* list) {
-   char lexeme[256];
-   int  lexi              = 0;
-   int  i                 = 0;
-   int  line              = 1;
-   int  col               = 0;
-   int  curr_ignored_line = -1;
-   int  is_string         = 0;
+   char         lexeme[256];
+   int          lexi              = 0;
+   int          i                 = 0;
+   int          line              = 1;
+   int          col               = 0;
+   int          curr_ignored_line = -1;
+   InternalBool is_string         = 0;
 
    while (1) {
       while (code[i] != '\n' && code[i] != '\0') {

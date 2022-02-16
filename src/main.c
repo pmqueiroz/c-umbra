@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../include/parser.h"
 #include "../include/token.h"
 #include "../include/tokenizer.h"
 #include "../include/util.h"
@@ -49,18 +50,43 @@ static void print_tokens(TokenList* list) {
    }
 }
 
+void print_table(SymbolTable* table) {
+   char* template = "| %d, %s, %s, %d |\n";
+
+   for (int i = 0; i < table->ptr; i++) {
+      Symbol*  symbol = symbol_table_get(table, i);
+      DataType type   = symbol->type;
+      char*    id     = symbol->id;
+      char*    value  = symbol->value;
+      int mutable     = symbol->mutable;
+
+      printf(template, type, id, value, mutable);
+   }
+}
+
 int main(int argc, char** argv) {
    if (strcmp(argv[1], "--help") == 0) {
       printf("Usage: %s compile <file>.umb\n", argv[0]);
       return 0;
    }
 
+   // character stream
    char* code = read_file(argv[1]);
 
+   // token stream
    TokenList tokens = {0};
    generate_tokens(code, &tokens);
 
    print_tokens(&tokens);
+
+   // symbol table
+   SymbolTable symbols = {0};
+   // generate_symbol_table(&symbols, &tokens);
+
+   assign_var(&symbols, &tokens, 5);
+   assign_var(&symbols, &tokens, 6);
+
+   print_table(&symbols);
 
    free(code);
 
