@@ -16,23 +16,11 @@ If you want do contribute make sure you have clang-format installed to ensure ou
 
 ## Building the Code
 
-This repository uses [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to handle with some dependencies. To install them run:
+Since you configure the project following the previous step we are ready to go building umbra.
 
 ```sh
-git submodule update --init
-```
-
-Next you need to download the libs dependencies. For that we use [vcpkg](https://vcpkg.io/en/index.html) as package manager.
-
-```sh
-# to install all vcpkg dependencies run
-./install_dependencies.sh
-```
-Now we are ready to go
-
-```sh
-make
-./umbra some-umbra-file.umb
+$ make
+$ ./umbra example/example.umb
 ```
 ## Running the tests
 
