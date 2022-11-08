@@ -17,6 +17,8 @@ ${EXECUTABLE}: ${OBJ_FILES}
 configure:
 	@echo "Configuring..."
 	@git submodule update --init
+	@./install_dependencies.sh
+
 
 clean:
 	@rm ${OBJ_FILES} ${EXECUTABLE}
