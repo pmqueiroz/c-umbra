@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/parser.h"
+#include "../include/symbol.h"
 #include "../include/token.h"
 #include "../include/tokenizer.h"
 #include "../include/util.h"

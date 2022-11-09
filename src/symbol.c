@@ -1,4 +1,4 @@
-#include "../include/parser.h"
+#include "../include/symbol.h"
 
 Symbol* symbol_create(char* id, DataType type, char* value, InternalBool mutable) {
    Symbol* symbol = (Symbol*)malloc(sizeof(Symbol));

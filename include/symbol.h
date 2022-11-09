@@ -1,5 +1,5 @@
-#ifndef UMBRA_PARSER_H
-#define UMBRA_PARSER_H
+#ifndef UMBRA_SYMBOL_H
+#define UMBRA_SYMBOL_H
 
 #include "error.h"
 #include "token.h"
