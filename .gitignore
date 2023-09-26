@@ -3,3 +3,5 @@
 umbra
 output
 tests_suites
+zig-cache
+zig-out
