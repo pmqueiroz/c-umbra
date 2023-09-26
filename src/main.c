@@ -79,14 +79,14 @@ int main(int argc, char** argv) {
 
    print_tokens(&tokens);
 
-   // symbol table
-   SymbolTable symbols = {0};
-   // generate_symbol_table(&symbols, &tokens);
+   // // symbol table
+   // SymbolTable symbols = {0};
+   // // generate_symbol_table(&symbols, &tokens);
 
-   assign_var(&symbols, &tokens, 5);
-   assign_var(&symbols, &tokens, 6);
+   // assign_var(&symbols, &tokens, 5);
+   // assign_var(&symbols, &tokens, 6);
 
-   print_table(&symbols);
+   // print_table(&symbols);
 
    free(code);
 
